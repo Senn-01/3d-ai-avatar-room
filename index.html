@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D AI Avatar Room</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'VT323', monospace;
+            background: #000;
+        }
+        #canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #0ff;
+            font-size: 24px;
+            text-align: center;
+            z-index: 1000;
+        }
+        #chat-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #0ff;
+            box-shadow: 0 0 20px #0ff, inset 0 0 20px rgba(0, 255, 255, 0.1);
+            padding: 20px;
+            color: #0ff;
+            image-rendering: pixelated;
+        }
+        #chat-history {
+            height: 150px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid #0ff;
+            font-size: 18px;
+        }
+        #chat-input {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 2px solid #0ff;
+            background: rgba(0, 0, 0, 0.8);
+            color: #0ff;
+            font-size: 18px;
+            font-family: 'VT323', monospace;
+        }
+        #chat-input::placeholder {
+            color: rgba(0, 255, 255, 0.6);
+        }
+        #send-button {
+            width: 70px;
+            padding: 10px;
+            margin-left: 10px;
+            border: 2px solid #f0f;
+            background: rgba(255, 0, 255, 0.2);
+            color: #f0f;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'VT323', monospace;
+            text-transform: uppercase;
+        }
+        #send-button:hover {
+            background: rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 10px #f0f;
+        }
+        .message {
+            margin: 5px 0;
+            padding: 5px;
+            font-size: 18px;
+        }
+        .user-message {
+            text-align: right;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+        }
+        .avatar-message {
+            text-align: left;
+            color: #f0f;
+            text-shadow: 0 0 5px #f0f;
+        }
+        #generate-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            border: 2px solid #ff0;
+            background: rgba(255, 255, 0, 0.2);
+            color: #ff0;
+            cursor: pointer;
+            font-size: 18px;
+            font-family: 'VT323', monospace;
+            text-transform: uppercase;
+        }
+        #generate-button:hover {
+            background: rgba(255, 255, 0, 0.4);
+            box-shadow: 0 0 10px #ff0;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 255, 255, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0ff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <div id="loading">LOADING CYBERPUNK ENVIRONMENT...</div>
+        <button id="generate-button">GENERATE WORLD</button>
+        <div id="chat-container">
+            <div id="chat-history"></div>
+            <div>
+                <input type="text" id="chat-input" placeholder="Type your message here...">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
